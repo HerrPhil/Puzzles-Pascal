@@ -26,9 +26,11 @@ public class Pascal {
     private String numberOfRows;
 
     private ArrayList<String> triangle;
+    private int triangleSize;
 
     public Pascal(String numberOfRows) {
         this.numberOfRows = numberOfRows;
+        this.triangleSize = 0;
     }
 
     public void print() {
@@ -36,12 +38,16 @@ public class Pascal {
         initialize();
         fillByRows();
         // fillByPreviousSums();
+        System.out.printf("triangle is%n");
+        for (int i = 0; i < triangleSize; i++) {
+            // interim printing
+            System.out.printf("%s%n", triangle.get(i));
+        }
     }
 
     private void initialize() {
         System.out.printf("initialize%n");
         int triangleRowCount = Integer.valueOf(numberOfRows);
-        int triangleSize = 0;
         for (int iRow = triangleRowCount; iRow > 0; iRow--) {
             triangleSize += iRow;
         }
@@ -51,5 +57,15 @@ public class Pascal {
 
     private void fillByRows() {
         System.out.printf("fill by rows%n");
+        // add binomial coefficients to each element
+        int triangleRowCount = Integer.valueOf(numberOfRows);
+        int triangleIndex = 0;
+        for (int row = 0; row < triangleRowCount; row++) {
+            for (int column = 0; column < row + 1; column++) {
+                System.out.printf("put %d in index %d%n", triangleIndex, triangleIndex);
+                triangle.add(triangleIndex, String.valueOf(triangleIndex)); // temporary
+                triangleIndex++;
+            }
+        }
     }
 }
