@@ -62,10 +62,32 @@ public class Pascal {
         int triangleIndex = 0;
         for (int row = 0; row < triangleRowCount; row++) {
             for (int column = 0; column < row + 1; column++) {
-                System.out.printf("put %d in index %d%n", triangleIndex, triangleIndex);
-                triangle.add(triangleIndex, String.valueOf(triangleIndex)); // temporary
+                int binomialCoefficient = getBinomialCoefficient(row, column);
+                System.out.printf("put %d in index %d%n", binomialCoefficient, triangleIndex);
+                triangle.add(triangleIndex, String.valueOf(binomialCoefficient)); // temporary
                 triangleIndex++;
             }
         }
     }
+
+    private int getBinomialCoefficient(int n, int k) {
+        // The Binomial Coefficient is an unorder combination of n values where k are chosen
+        // The factorial of n and k are used to calculate the value
+        // n!/(k!(n-k)!)
+        return factorial(n) / ( factorial(k) * factorial(n-k) );
+    }
+
+    private int factorial(int value) {
+        // Edge case: Zero factorial value is 1
+        if (value == 0) return 1;
+        // non-zero factorial is 1*2*3*...*n
+        int result = value;
+        int next = value - 1;
+        while (next > 0) {
+            result *= next;
+            next--;
+        }
+        return result;
+    }
+
 }
