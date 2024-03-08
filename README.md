@@ -1,6 +1,6 @@
 # Puzzles-Pascal
 
-##Print Pascal's Triangle
+## Print Pascal's Triangle
 
 Pascal’s triangle is a triangular array of binomial coefficients.
 
@@ -33,4 +33,38 @@ n choose k = n-1 choose k-1 + n-1 choose k
 for any non-negative integer n and any integer 0<=k<=n.
 
 Write a function that takes an integer value N as input and prints the first N lines of Pascal’s triangle.
+
+## Space optimized function
+
+This is based on binomial coefficients, too.
+
+We know that the ith entry in a line number line is Binomial Coefficient C(line, i).
+
+We know that all lines start with Binomial Coefficient C(line, 0) = 1.
+
+The idea is to calculate C(line, i) using C(line, i-1).
+
+It can be calculated in O(1) time.
+
+C(line, i) = line! / ( (line - i)! * i!)
+
+C(line, i-1) = line! / ( (line - i + 1)! * (i-1)! )
+
+Now for some selective rearrangement.
+
+C(line, i) = line! / ( (line - i)! * (i-1)! * i)
+
+C(line, i-1) = line! / ( (line - 1)! * (line - i + 1) * (i-1)! )
+
+What is factor that rearranged C(line, i-1) can be multipled by to result in C(line, i)?
+
+Try (line - i + 1) / i.
+
+C(line, i-0) * (line - i + 1) / i
+
+( line! * (line - i + 1) ) / ( (line - 1)! * (line - i + 1) * (i-1)! * i )
+
+Now the (line - i + 1) values cancel, and (i-1)! * i resolves to i!
+
+That is equivalent to C(line, i).
 
