@@ -37,11 +37,21 @@ public class Pascal {
         System.out.printf("Number of rows %s%n", numberOfRows);
         initialize();
         fillByRows();
-        // fillByPreviousSums();
         System.out.printf("triangle is%n");
+        int numberOfColumns = 1; // 1st row
+        int numberOfPrints = 0;
         for (int i = 0; i < triangleSize; i++) {
             // interim printing
-            System.out.printf("%s%n", triangle.get(i));
+            System.out.printf("%s", triangle.get(i));
+            numberOfPrints++;
+            if (numberOfPrints < numberOfColumns) {
+                System.out.printf(" ");
+            }
+            if (numberOfPrints == numberOfColumns) {
+                System.out.printf("%n");
+                numberOfPrints = 0;
+                numberOfColumns++;
+            }
         }
     }
 
