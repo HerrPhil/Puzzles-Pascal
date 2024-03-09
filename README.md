@@ -68,3 +68,17 @@ Now the (line - i + 1) values cancel, and (i-1)! * i resolves to i!
 
 That is equivalent to C(line, i).
 
+## Dynamic programming function
+
+Each entry of each subsequent row is constructed by adding the number above
+and to the left with the number above and to the right, treating blank entries as 0.
+
+The unique nonzero entry in the topmost row is C(0,0) = 1.
+
+With this notation, the alegbra is as follows.
+
+C(n, k) = C(n-1, k-1) + C(n-1, k)
+
+for any non-negative integer n and any integer 0<=k<=n.
+
+This is known as Pascal's rule.
